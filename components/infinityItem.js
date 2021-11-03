@@ -1,11 +1,11 @@
 import React from 'react'
-import { View, Text, Image, StyleSheet } from 'react-native';
-function InfinityItem() {
+import { View,Text, Image, StyleSheet } from 'react-native';
+function InfinityItem({name, id}) {
     return (
-        <View style={styles.container}>
-          <Image  style={styles.img}  source = {require('../assets/610.png')}/>
-          <Text style={styles.txt}>Josh's Sister</Text>
-        </View>
+      <View style={[id % 2 == 1 ?  styles.container: styles.container2]}>
+          <Image style={styles.img} source = {{uri:`https://rickandmortyapi.com/api/character/avatar/${id}.jpeg`}}/>
+          <Text style={styles.txt}>{name}</Text>
+      </View>
     )
 }
 
@@ -18,18 +18,27 @@ const styles = StyleSheet.create({
        borderWidth: 1,
        borderColor: '#D6E053'
    },
+    container2: {
+      width: '100%',
+      height: 130,
+      backgroundColor: '#85C543',
+      color: '#ffffff',
+      borderWidth: 1,
+      borderColor: '#D6E053'
+    },
    img: {
-       width: 128,
-       height: 128,
-       borderRadius: 64
+       width: 100,
+       height: 100,
+       borderRadius: 50,
+       marginTop: 14,
+       marginLeft: 14
    },
    txt:{
      position:'absolute',
      marginLeft: 150,
-     marginTop: 35,
+     marginTop: 45,
      fontSize: 30,
-     color: 'white'
-
+     color: '#D6E053'
    }
 });
 
