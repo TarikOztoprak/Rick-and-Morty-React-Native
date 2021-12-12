@@ -2,22 +2,20 @@
 
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { View, Text, Image, StyleSheet,ScrollView ,FlatList, TouchableHighlight} from 'react-native';
+import { View, Text, Image, StyleSheet,ScrollView ,FlatList, TouchableHighlight, acti} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Logo from './components/Logo'
 import InfinityItem from './components/infinityItem';
 import Details from './components/Details';
 
-
-
-
 function HomeScreen({ navigation}) {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   console.log(data);
   useEffect(() => {
-    fetch('https://rickandmortyapi.com/api/character')
+    let page = Math.random() * 42;
+    fetch(`https://rickandmortyapi.com/api/character?page=${page}`)
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => console.error(error))
@@ -27,18 +25,15 @@ function HomeScreen({ navigation}) {
   return (
     <View>
       <Logo/>
-      <ScrollView>
-          <FlatList
-            data={data.results}
-            keyExtractor={({ id }, index) => id}
-            renderItem={({ item }) => (
-              <TouchableHighlight onPress={() => navigation.navigate('Details', {id: item.id})}>
-               <InfinityItem name={item.name} id={item.id}/>
-              </TouchableHighlight>
-            )}
-          />
-      </ScrollView>
-     
+        <FlatList
+          data={data.results}
+          keyExtractor={({ id }, index) => id}
+          renderItem={({ item }) => (
+            <TouchableHighlight onPress={() => navigation.navigate('Details', {id: item.id, name: item.name, status: item.status, species: item.species, location: item.location, episode: item.episode})}>
+              <InfinityItem name={item.name} id={item.id}/>
+            </TouchableHighlight>
+          )}
+        />   
     </View>
   );
 }

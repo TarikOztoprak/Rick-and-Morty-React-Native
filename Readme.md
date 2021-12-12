@@ -1,6 +1,6 @@
 # Rick and Morty
-* Bu projede https://rickandmortyapi.com/ üzerinden verileri çekiyorum.
-* Figma üzerinden yapmak isteğim projeyi tasarladım.
+* Bu projede https://rickandmortyapi.com/ api'ndan verileri çekiyorum.
+* Projenin Tasarımı.
 ![figma](tasarım.PNG)
 ## Kurulum
 * expo install
